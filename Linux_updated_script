@@ -1,0 +1,76 @@
+import paramiko
+from openpyxl import load_workbook
+from openpyxl.compat import range
+
+wb = load_workbook(filename ='DR.xlsx')
+sheet_ranges = wb['DR']
+l=[' 0.00','0.00','0.01','0.02','0.03','0.04','0.05','0.06','0.07','0.08','0.09',' 0.01',' 0.02',' 0.03',' 0.04',' 0.05',' 0.06',' 0.07',' 0.08',' 0.09']
+li=['10.89.217.210']
+Time=input("Enter Time : ")
+if Time=='3am':
+    j=1
+elif Time=='7am':
+    j=2
+elif Time=='11am':
+    j=3
+elif Time=='3pm':
+    j=4
+elif Time=='7pm':
+    j=5
+else:
+    j=6
+for i in range(0,len(li)):
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        if li[i]=="10.89.217.39":
+            ssh.connect(li[i], username='hexmon', password='session@123')
+        else:
+            ssh.connect(li[i], username='hexmon', password='session@123')
+        stdin, stdout, stderr = ssh.exec_command('sh /tmp/mem;uptime')
+        a,b,c = ssh.exec_command('sh /home/hexmon/filesystem')
+        u=stdout.readlines()
+        output = ''.join(u)
+        v=b.readlines()
+        output1 = ''.join(v)
+        print("----------------------["+li[i]+"]--------------------------")
+        print(output)
+        Mem='Percentage='
+        Mem1='days'
+        MemPer=output[(output.index(Mem)+len(Mem)):output.index(Mem1)]
+        Mem3=MemPer.splitlines()
+        Mem3=Mem3[0]
+        ws = wb.active
+        load='load average:'
+        uptime=output[(output.index(load)+len(load)):]
+        cp1=uptime.split(',')
+        cp2=cp1[2]
+
+        ws['B'+str(j)]='Y'
+        if "FILE SYSTEM THRESHOLD" in output1:
+            print (output1)
+            ws['E'+str(j)]='file system utilization is above 80%'
+        else:
+            ws['E'+str(j)]='no file system utilization is above 80%'
+        if "INODE THRESHOLD" in output1:
+            ws['F'+str(j)]='inode value utilization is above 80%'
+        else:
+            ws['F'+str(j)]='no inode value utilization is above 80%'
+        if cp2 in l:
+            ws['C'+str(j)]='0.10%'
+        else:
+            ws['C'+str(j)]=cp2.strip()+"%"
+        ws['D'+str(j)]=Mem3.strip()
+        j=j+6
+        
+    except:
+        print("Error in ip :",li[i],"Please Login Maually")
+        ws = wb.active
+        ws['B'+str(j)]='Error'
+        ws['C'+str(j)]='Error'
+        ws['D'+str(j)]='Error'
+        ws['E'+str(j)]='Error'
+        ws['F'+str(j)]='Error'
+        j=j+6
+        
+wb.save('DR.xlsx')

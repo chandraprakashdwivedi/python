@@ -1,0 +1,46 @@
+#Commands to create virtual Env to create a separate application directory
+
+#pip3 install virtualenv
+
+##Depend on your python version 3.5/3.6/
+#virtualenv -p $(which python3.5) ~/.virtualenvs/elearning
+
+To login virtual Env
+
+#source ~/.virtualenvs/elearning/bin/activate
+
+to Logout
+
+#deactivate
+
+Note:To get what are the packages you environment is using use:
+
+#pip freeze --local >requirement.txt
+#pip install -r requirement.txt
+
+some Django setup commands
+
+#source ~/.virtualenvs/elearning/bin/activate
+#pip3 install django
+#django-admin startproject elearning
+#cd elearning
+
+## to migrate updataions in database###
+#./manage.py migrate
+#./manage.py makemigrations blog ##to particularly migrate blog app
+
+After migration to watch created tables of blog app
+#./manage.py sqlmigrate blog 0001
+
+##To run DJango server##
+#./manage.py runserver
+
+Now to create an application inside your project
+#python3 manage.py startapp blog
+
+
+
+
+you can stop the server usin ctrl+c
+
+

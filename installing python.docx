@@ -1,0 +1,72 @@
+If getting error a dll required for this install to complete python error
+
+solution
+ after going to Properties > Security on the C:\Users\x\AppData\Local\Temp 
+folder and giving that Everyone the Full control permission
+
+
+1.you need to set the environement variable in windows to c:\python34
+
+2.then type "python" on command prompt you see a python version screen.
+
+Note :always run the cmd as the administrator
+
+---------------------------------------------------------------------------------
+
+vcvarsall.bat error
+
+1.Remove all the Microsoft Visual C++ 2010 Redistributable packages from Control Panel\Programs and Features.
+
+2.If you don't do the installation is going to fail with an obscure "Fatal error during installation" error.
+
+3.Install Visual C++ 2010 Express (download) http://download.microsoft.com/download/1/D/9/1D9A6C0E-FC89-43EE-9658-B9F0E3A76983/vc_web.exe
+
+4.download GRMSDKX_EN_DVD.iso https://download.microsoft.com/download/F/1/0/F10113F5-B750-4969-A255-274341AC6BCE/GRMSDKX_EN_DVD.iso
+
+5.just mount the ISO and run Setup\SDKSetup.exe instead of setup.exe.
+
+6.Create a vcvars64.bat file in C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\amd64 that contains :
+
+CALL "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
+
+7.Now everything should work, go and try py -3 setup.py clean --all build_ext --force.
+
+------------------------------------------------------------------------------
+
+Note: you can now install the the libraray of python using pip in windows run in command promp
+
+py -m pip  install module
+
+------------------------------------------------------------------------------
+
+Installing the paramiko module also need installing these modules/packages
+
+py -m pip  install paramiko
+
+py -m pip  install crypto   //to remove the winrandom error
+
+py -m pip  install utils    //to remove the utils error
+
+After that go to location
+C:\Python34\Lib\site-packages\pycrypto-2.6.1-py3.4-win-amd64.egg\Crypto\Random\OSRNG
+
+and edit nt.py
+
+here change the parameter 
+import winrandom
+to
+from . import winrandom
+
+-----------------------------------------------------------------------------
+
+TO run a range module
+
+install openyxl
+
+py -m pip  install openyxl
+
+-----------------------------------------------------------------------------
+
+without PIP or by manually downloading a package
+#py  setup.py install
+
