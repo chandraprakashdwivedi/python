@@ -29,10 +29,16 @@ some Django setup commands
 #./manage.py migrate
 #./manage.py makemigrations blog ##to particularly migrate blog app
 
+To remove particular app and its database use
+#python manage.py migrate <app> zero
+
+
+
 After migration to watch created tables of blog app
-#./manage.py sqlmigrate blog 0001
+#sqlite3 db.sqlite
 or
 #./manage.py dbshell -->.tables
+
 
 
 ##To run DJango server##
