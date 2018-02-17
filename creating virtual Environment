@@ -26,8 +26,8 @@ some Django setup commands
 #cd elearning
 
 ## to migrate updataions in database###
+#./manage.py makemigrations blog 
 #./manage.py migrate
-#./manage.py makemigrations blog ##to particularly migrate blog app
 
 To remove particular app and its database use
 #python manage.py migrate <app> zero
