@@ -49,7 +49,16 @@ Now to create an application inside your project
 
 
 
+## Entering database entry ###
+#from music.models import Album,Song
+#Album.objects.all() ##to see database value
+#a=Album(artist="taylore swift", album_title="Red",genre="country",album_logo="https://thenewbost.com/34234209.png")
+#a.save()
 
-you can stop the server usin ctrl+c
+#Album.objects.filter(id=1)
+#Album.objects.filter(artist__startswith='taylor')
 
+
+##creating admin user
+#./manage.py createsuperuser
 
