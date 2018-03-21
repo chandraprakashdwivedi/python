@@ -1,0 +1,1 @@
+paramiko.common.logging.basicConfig(level=paramiko.common.DEBUG)
