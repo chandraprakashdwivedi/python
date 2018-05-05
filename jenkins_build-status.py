@@ -3,7 +3,7 @@ import sys
 import urllib
 import urllib2
 
-jenkinsUrl = "https://localhost:8080/test/"
+jenkinsUrl = "https://localhost:8080/job/"
 
 
 if len( sys.argv ) > 1 :
