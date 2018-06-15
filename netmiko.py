@@ -5,7 +5,7 @@ from netmiko import ConnectHandler
 import time
 
 store = raw_input("Enter the number of store whose Post Work you want : ")
-fqdn_wlc = store + "-wlc.rtl.apple.com"
+fqdn_wlc = store + "-
 usrn = raw_input("Enter the username : ")
 paswd_wlc = raw_input("Enter the password for " + store + "-wlc :")
 device_wlc = ConnectHandler(device_type='cisco_wlc', ip=fqdn_wlc , username=usrn , password=paswd_wlc)
