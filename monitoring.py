@@ -24,7 +24,7 @@ for i in range(0,len(li)):
     data=[]
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(li[i], username='hexmon', password='hetd#123')
+    ssh.connect(li[i], username='test', password='abc#123')
     stdin,stdout,stderr = ssh.exec_command('sh /tmp/mem; top -b -d1 -n4|grep -i "Cpu(s)" ')
     a=stdout.readlines()
     output=''.join(a)
