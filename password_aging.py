@@ -6,9 +6,9 @@ for i in range(0,len(li)):
         ssh=paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         if li[i]!="10.88.238.39":
-            ssh.connect(li[i], username='hexmon' ,password='session#123')
+            ssh.connect(li[i], username='test' ,password='session#123')
         else:
-            ssh.connect(li[i], username='hexmon' , password='session#123')
+            ssh.connect(li[i], username='test' , password='session#123')
             stdin,stdout,stderr = ssh.exec_command('echo -e "session#123 \n hetd#123 \n hetd#123" | passwd --stdin hexmon')
             print('password changed',li[i])
     except:
